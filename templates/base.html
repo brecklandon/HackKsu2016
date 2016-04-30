@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block tile %}
+            TakeCare
+        {% endblock %}
+    </title>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <div>
+    hello
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock body %}
+</body>
+<footer>
+    {% block footer %}
+    {% endblock %}
+</footer>
+</html>
