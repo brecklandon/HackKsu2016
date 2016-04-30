@@ -8,15 +8,77 @@
             TakeCare
         {% endblock %}
     </title>
+    <link rel="stylesheet" href="{% static 'uikit/css/uikit.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'uikit/css/uikit.almost-flat.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'uikit/css/uikit.gradient.min.css' %}"/>
+
+    <!--<link rel="stylesheet" href='{% static 'font-awesome/css/font-awesome.min.css' %}'>-->
+    <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+    <script src="{% static 'uikit/js/uikit.min.js' %}"></script>
+    <!--<script src="{% static 'js/WearProtection.js' %}"></script>-->
     {% block head %}
     {% endblock %}
 </head>
 <body>
 {% block body %}
     <div>
-    hello
-        {% block content %}
-        {% endblock %}
+        <nav class="uk-navbar">
+            <div class="uk-clearfix uk-hidden-small">
+                <div class="uk-float-left">
+                    <div class="uk-panel">
+                        <ul class="uk-navbar-nav">
+                            <li class=""><a href="{% url 'takecare:index' %}">Home</a></li>
+                            {% if user.is_anonymous %}
+                                <li><a href="{% url 'takecare:user:create' %}">Register</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="uk-float-right">
+                    {% if user.is_anonymous %}
+                        <div class="uk-panel">
+                            <div class="uk-navbar-content uk-hidden-small">
+                                <form class="uk-form uk-margin-remove uk-display-inline-block"
+                                      action="{% url 'takecare:auth:login' %}" method="POST">
+                                    {% csrf_token %}
+                                    <fieldset data-uk-margin>
+                                        <input name="email" type="email" placeholder="Email">
+                                        <input name="password" type="password" placeholder="Password">
+                                        <button class="uk-button">Login</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="uk-panel">
+                        <ul class="uk-navbar-nav">
+                            <li class="uk-parent" data-uk-dropdown>
+                                <a href="">Add Helper</a>
+
+                                <div class="uk-dropdown uk-dropdown-navbar">
+                                    <form class="uk-form uk-margin-remove uk-display-inline-block"
+                                          action="{% url 'takecare:helper:add' %}" method="POST">
+                                        {% csrf_token %}
+                                        <fieldset data-uk-margin>
+                                            <input name="email" type="email" placeholder="Helper's Email">
+                                            <br>
+                                            <button class="uk-button uk-align-center">Add</button>
+                                        </fieldset>
+                                </div>
+
+                            </li>
+                            <li class=""><a href="{% url 'takecare:auth:logout' %}">Logout</a></li>
+                        </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <br>
+        <div class="uk-container">
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
 {% endblock body %}
 </body>

@@ -7,7 +7,7 @@ from .forms import UserSignup
 
 
 def index(request):
-    return render(request, 'index.html', {'form': UserSignup()})
+    return render(request, 'index-user.html', {'form': UserSignup()})
 
 
 def create(request):
@@ -22,8 +22,8 @@ def create(request):
 
 
 def update(request):
-    return render(request, 'index.html', {})
+    return render(request, 'index-user.html', {})
 
 
 def remove(request):
-    return render(request, 'index.html', {})
+    return render(request, 'index-user.html', {})

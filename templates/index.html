@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    index page
+    <br>
+    {% if not user.is_anonymous %}
+        {{ user.email }}
+    {% else %}
+         please sign in
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <form class="uk-form" action="{% url 'takecare:user:create' %}" method="post" novalidate>
+        {% csrf_token %}
+        <div class="uk-form-row">
+            {{ form.email }}
+            {{ form.password1 }}
+            {{ form.password2 }}
+        </div>
+        <div class="uk-form-row">
+            {{ form.first_name }}
+            {{ form.last_name }}
+            {{ form.phone_number }}
+            {{ form.user_type }}
+        </div>
+        <div class="uk-form-row">
+            <input class="uk-button" type="submit" value="Create"/>
+        </div>
+    </form>
+{% endblock %}

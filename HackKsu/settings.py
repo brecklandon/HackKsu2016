@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'TakeCare',
     'TakeCare.User',
+    'TakeCare.Auth',
+    'TakeCare.Helper',
 ]
 
 MIDDLEWARE_CLASSES = [

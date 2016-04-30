@@ -4,12 +4,18 @@ from django.contrib.auth import get_user_model
 
 
 class UserSignup(forms.ModelForm):
-    password1 = PasswordField()
-    password2 = PasswordField()
+    password1 = PasswordField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    password2 = PasswordField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
 
     class Meta:
         model = get_user_model()
         fields = ['email', 'first_name', 'last_name', 'phone_number', 'user_type']
+        widgets = {
+            'email': forms.TextInput(attrs={'placeholder': 'Email'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
+            'phone_number': forms.TextInput(attrs={'placeholder': 'Phone Number'}),
+            }
 
     def clean(self):
         cleaned_data = super(UserSignup, self).clean()
