@@ -3,13 +3,14 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.http import JsonResponse, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 
 account = "AC91202b7272942acdb0b2afa934264def"
 token = "e4be4d15bafe23881e2627b05231dabd"
 
 client = TwilioRestClient(account, token)
 
-
+@csrf_exempt
 def sendMessage(request):
     if request.POST == 'POST':
         try:
