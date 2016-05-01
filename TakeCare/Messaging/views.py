@@ -20,7 +20,7 @@ def sendMessage(request):
             print(request.body)
             print(body)
 
-            s = "Your dependent needs help. They are located at " + body.get('2')
+            s = "Your dependent needs help. They are located at " + body[2]
             message = client.messages.create(to="+13166702055", from_="+13162029726",
                                      body="message stuff")
             return JsonResponse(status=200, data={'message': 'Message sent.'})
