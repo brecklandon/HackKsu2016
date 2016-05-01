@@ -20,7 +20,7 @@ def sendMessage(request):
         except:
             return JsonResponse(status=400, data={'message': 'something failed.'})
     else:
-        print(request.POST)
+        print('get' + request.POST)
         return JsonResponse(status=200, data={'message': 'get request received.'})
     # return HttpResponseRedirect(reverse('takecare:index'))
 
