@@ -26,7 +26,7 @@ def sendMessage(request):
             return JsonResponse(status=200, data={'message': 'Message sent.'})
         except:
             print(request.body)
-            return JsonResponse(status=400, data={'message': request.POST})
+            return JsonResponse(status=400, data={'message': request.body})
     else:
         print('get ' + request.method)
         return JsonResponse(status=200, data={'message': 'get request received.'})
