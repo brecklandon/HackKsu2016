@@ -10,6 +10,7 @@ token = "e4be4d15bafe23881e2627b05231dabd"
 
 client = TwilioRestClient(account, token)
 
+
 @csrf_exempt
 def sendMessage(request):
     if request.POST == 'POST':
@@ -20,7 +21,6 @@ def sendMessage(request):
         except:
             return JsonResponse(status=400, data={'message': 'something failed.'})
     else:
-        print('get' + request.POST)
+        print('get ' + request.method)
         return JsonResponse(status=200, data={'message': 'get request received.'})
-    # return HttpResponseRedirect(reverse('takecare:index'))
 
