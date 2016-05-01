@@ -17,14 +17,15 @@ def sendMessage(request):
     if request.method == 'POST':
         try:
             body = json.loads(request.body)
+            print(request.body)
+            print(body)
 
             s = "Your dependent needs help. They are located at " + body.get('2')
             message = client.messages.create(to="+13166702055", from_="+13162029726",
-                                     body=s)
+                                     body="message stuff")
             return JsonResponse(status=200, data={'message': 'Message sent.'})
         except:
             print(request.POST)
-            print()
             return JsonResponse(status=400, data={'message': request.POST})
     else:
         print('get ' + request.method)
