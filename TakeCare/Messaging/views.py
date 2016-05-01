@@ -17,7 +17,7 @@ def sendMessage(request):
     if request.method == 'POST':
         try:
             body = json.load(request.body)
-            print(request.body)
+            # print(request.body)
             print(body)
 
             s = "Your dependent needs help. They are located at " + body[2]
