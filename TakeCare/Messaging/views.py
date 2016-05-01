@@ -13,7 +13,7 @@ client = TwilioRestClient(account, token)
 
 @csrf_exempt
 def sendMessage(request):
-    if request.POST == 'POST':
+    if request.method == 'POST':
         try:
             message = client.messages.create(to="+13166702055", from_="+13162029726",
                                      body="Your dependent needs help. They are located at " + request.POST['2'])
