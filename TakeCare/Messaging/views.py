@@ -17,7 +17,8 @@ def sendMessage(request):
         try:
             message = client.messages.create(to="+13166702055", from_="+13162029726",
                                      body="Your dependent needs help. They are located at ")
-            print(request.POST.get('2'))
+            for k,v in request.POST:
+                print(k,v)
             return JsonResponse(status=200, data={'message': 'Message sent.'})
         except:
             print(request.POST)
