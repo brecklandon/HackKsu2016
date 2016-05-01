@@ -11,11 +11,14 @@ client = TwilioRestClient(account, token)
 
 
 def sendMessage(request):
-    try:
-        message = client.messages.create(to="+13166702055", from_="+13162029726",
-                                 body="Your dependent needs help. They are located at..")
-        return JsonResponse(status=200, data={'message': 'Message sent.'})
-    except:
-        return JsonResponse(status=400, data={'message': 'something failed'})
+    if request.POST == 'POST':
+        try:
+            message = client.messages.create(to="+13166702055", from_="+13162029726",
+                                     body="Your dependent needs help. They are located at " + request.POST['2'])
+            return JsonResponse(status=200, data={'message': 'Message sent.'})
+        except:
+            return JsonResponse(status=400, data={'message': 'something failed.'})
+    else:
+        return JsonResponse(status=200, data={'message': 'get request received.'})
     # return HttpResponseRedirect(reverse('takecare:index'))
 
