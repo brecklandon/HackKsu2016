@@ -8,8 +8,13 @@ from django.contrib.auth.decorators import login_required
 @login_required()
 def add(request):
     if request.method == 'POST':
-        if get_user_model().objects.filter(email=request.POST['email']):
-            print('found user')
+        helper = UserData.objects.get(user=get_user_model().objects.get(email=request.POST['email']))
+        u = UserData.objects.get(user=get_user_model().objects.get(email=request.user.email))
+        if helper and helper.user.email is not u.user.email:
+            u.assistants_set.add(helper, bulk=False)
+
+        else:
+            print('user not found')
         return HttpResponseRedirect(reverse('takecare:index'))
 
 
