@@ -19,7 +19,7 @@ def sendMessage(request):
                                      body="Your dependent needs help. They are located at " + request.POST['2'])
             return JsonResponse(status=200, data={'message': 'Message sent.'})
         except:
-            return JsonResponse(status=400, data={'message': 'something failed.'})
+            return JsonResponse(status=400, data={'message': request.POST})
     else:
         print('get ' + request.method)
         return JsonResponse(status=200, data={'message': 'get request received.'})
