@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.http import JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
+import json
 
 account = "AC91202b7272942acdb0b2afa934264def"
 token = "e4be4d15bafe23881e2627b05231dabd"
@@ -15,11 +16,15 @@ client = TwilioRestClient(account, token)
 def sendMessage(request):
     if request.method == 'POST':
         try:
+            body = json.loads(request.body)
+
+            s = "Your dependent needs help. They are located at " + body.get('2')
             message = client.messages.create(to="+13166702055", from_="+13162029726",
-                                     body="Your dependent needs help. They are located at " + request.body['2'])
+                                     body=s)
             return JsonResponse(status=200, data={'message': 'Message sent.'})
         except:
             print(request.POST)
+            print()
             return JsonResponse(status=400, data={'message': request.POST})
     else:
         print('get ' + request.method)
