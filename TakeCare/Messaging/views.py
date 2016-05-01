@@ -19,7 +19,7 @@ def sendMessage(request):
             # body = json.load(request.body)
             # print(request.body)
             print('this is body ')
-            print(json.load(request.body))
+            print(json.loads(request.body))
             s = "Your dependent needs help. They are located at "
             message = client.messages.create(to="+13166702055", from_="+13162029726",
                                      body="message stuff")
