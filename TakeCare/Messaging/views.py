@@ -16,7 +16,7 @@ client = TwilioRestClient(account, token)
 def sendMessage(request):
     if request.method == 'POST':
         try:
-            body = json.loads(request.body)
+            body = json.load(request.body)
             print(request.body)
             print(body)
 
@@ -25,7 +25,7 @@ def sendMessage(request):
                                      body="message stuff")
             return JsonResponse(status=200, data={'message': 'Message sent.'})
         except:
-            print(request.POST)
+            print(request.body)
             return JsonResponse(status=400, data={'message': request.POST})
     else:
         print('get ' + request.method)
