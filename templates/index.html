@@ -7,6 +7,20 @@
     {% if not user.is_anonymous %}
         {{ user.email }}
     {% else %}
-         please sign in
+        please sign in
     {% endif %}
+
+    <form action="{% url 'takecare:messages:sendMessage' %}" method="POST">
+        {% csrf_token %}
+
+    </form>
+
+    <form class="uk-form uk-margin-remove uk-display-inline-block"
+          action="{% url 'takecare:messages:sendMessage' %}" method="POST">
+        {% csrf_token %}
+        <fieldset data-uk-margin>
+            <input name="2" type="text" placeholder="post">
+        <button class="uk-button">Submit</button>
+        </fieldset>
+    </form>
 {% endblock %}

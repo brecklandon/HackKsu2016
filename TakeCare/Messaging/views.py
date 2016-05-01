@@ -16,18 +16,14 @@ client = TwilioRestClient(account, token)
 def sendMessage(request):
     if request.method == 'POST':
         try:
-            # body = json.load(request.body)
-            # print(request.body)
-            print('this is body ')
-            print(json.loads(request.body))
             s = "Your dependent needs help. They are located at "
             message = client.messages.create(to="+13166702055", from_="+13162029726",
-                                     body="message stuff")
+                                     body="Your dependent needs help!")
             return JsonResponse(status=200, data={'message': 'Message sent.'})
         except:
-            print(request.body)
             return JsonResponse(status=400, data={'message': str(request.body)})
     else:
-        print('get ' + request.bod)
+        message = client.messages.create(to="+13166702055", from_="+13162029726",
+                                     body="Your dependent needs help!")
         return JsonResponse(status=200, data={'message': 'get request received.'})
 
